@@ -27,18 +27,6 @@ class PieChartView @JvmOverloads constructor(context: Context, attrs: AttributeS
     }
     private val rectF = RectF()
     private val categoryColors = mutableMapOf<String, Int>()
-    private val colors = listOf(
-        Color.RED,
-        Color.BLUE,
-        Color.GREEN,
-        Color.YELLOW,
-        Color.CYAN,
-        Color.MAGENTA,
-        Color.DKGRAY,
-        Color.LTGRAY,
-        Color.BLACK,
-        Color.WHITE
-    )
     private var totalAmount = 0f
     private var onCategoryClickListener: ((String) -> Unit)? = null
     private var pieSlices = mutableListOf<PieSlice>()
@@ -98,7 +86,6 @@ class PieChartView @JvmOverloads constructor(context: Context, attrs: AttributeS
         canvas.drawCircle(rectF.centerX(), rectF.centerY(), centerCircleRadius, paint)
     }
 
-
     fun setPayloads(payloads: List<Payload>) {
         this.payloads = payloads
         totalAmount = payloads.sumOf { it.amount }.toFloat()
@@ -157,11 +144,9 @@ class PieChartView @JvmOverloads constructor(context: Context, attrs: AttributeS
         return pieSlices.firstOrNull { angle in it.startAngle..(it.startAngle + it.sweepAngle) }?.category
     }
 
-
     fun setOnCategoryClickListener(listener: (String) -> Unit) {
         onCategoryClickListener = listener
     }
-
 
     public override fun onSaveInstanceState(): Parcelable {
         return Bundle().apply {
