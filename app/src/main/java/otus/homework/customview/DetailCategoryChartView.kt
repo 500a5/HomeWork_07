@@ -41,6 +41,7 @@ class DetailChartView @JvmOverloads constructor(
         style = Paint.Style.FILL
         strokeWidth = 10f
     }
+    private val path = Path()
 
     init {
         if (isInEditMode) {
@@ -137,7 +138,6 @@ class DetailChartView @JvmOverloads constructor(
         pointsByCategory.forEach { (category, points) ->
             paint.color = categoryColors[category] ?: Color.BLACK
             pointPaint.color = categoryColors[category] ?: Color.BLACK
-            val path = Path()
             points.sortedBy { it.day }.forEachIndexed { index, data ->
                 val x = padding + (width - 2 * padding) * data.day / 30
                 val y = height - padding - (height - 2 * padding) * data.sumAmount / maxSum
